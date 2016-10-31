@@ -1,0 +1,80 @@
+//Variables
+int led_1=13;
+int led_2=12;
+int led_3=11;
+int led_4=10;
+int led_5=9;
+int led_6=8;
+int led_7=7;
+int led_8=6;
+int led_9=5;
+int led_10=4;
+int sw_1=3;
+int sw_2=2;
+int sw_3=1;
+int leds0 [10]={led_2,led_4,led_6,led_8,led_10,led_1,led_3,led_5,led_7,led_9};
+int leds1 [10]={led_2,led_4,led_6,led_8,led_10};
+int leds2 [10]={led_1,led_3,led_5,led_7,led_9};
+int leds3 [10]={led_10,led_2,led_3,led_4,led_5,led_6,led_7,led_8,led_9,led_1};
+int leds4 [10]={led_10,led_1,led_9,led_2,led_8,led_3,led_7,led_4,led_6,led_5};
+int leds5 [10]={led_10,led_5,led_8,led_4,led_6};
+int leds5_1 [10]={led_3,led_7,led_1,led_9,led_2};
+int cont=0;
+int ct=0;
+int restart=0;
+void setup() {
+  // put your setup code here, to run once:
+pinMode(led_1,OUTPUT); 
+pinMode(led_2,OUTPUT); 
+pinMode(led_3,OUTPUT); 
+pinMode(led_4,OUTPUT); 
+pinMode(led_5,OUTPUT); 
+pinMode(led_6,OUTPUT); 
+pinMode(led_7,OUTPUT); 
+pinMode(led_8,OUTPUT); 
+pinMode(led_9,OUTPUT); 
+pinMode(led_10,OUTPUT); 
+pinMode(sw_1,INPUT);
+pinMode(sw_2,INPUT);
+pinMode(sw_3,INPUT);
+}
+void loop() {//programa
+if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==LOW&&digitalRead(sw_3)==LOW)
+   {//if0 //JUEGO OFF
+   digitalWrite(leds0[cont],LOW);}//if0
+   else{//else0 
+   if(digitalRead(sw_2)==HIGH&&digitalRead(sw_1)==LOW&&digitalRead(sw_3)==LOW)
+{//if1//JUEGO PARES
+   for( ;cont<=5;cont++)
+   {//for1 //primera condicion
+   digitalWrite(leds1[cont],HIGH);delay(50); digitalWrite(leds1[cont],LOW);delay(50);} cont=0;
+   }//for1&//if1
+   else{//else1
+   if(digitalRead(sw_2)==HIGH&&digitalRead(sw_1)==LOW&&digitalRead(sw_3)==HIGH)
+{//if2 //JUEGO IMPARES
+   for( ;cont<=5;cont++){//for2 //segunda condicion
+   digitalWrite(leds2[cont],HIGH);delay(100);digitalWrite(leds2[cont],LOW);delay(100);}//for2
+   cont=0;}//if2 & else2
+   else{//else2
+   if(digitalRead(sw_1)==HIGH&&digitalRead(sw_2)==LOW&&digitalRead(sw_3)==HIGH)  
+{//if3    //JUEGO RANDOMICO
+   for( ;cont<=random(8);cont++){//for4 //tercera condicion
+   digitalWrite(leds3[cont],HIGH); delay(100);
+   digitalWrite(leds3[cont],LOW); delay(100);}//for4
+   cont=0;}//if3
+   else{//else3
+   if(digitalRead(sw_2)==HIGH&&digitalRead(sw_1)==HIGH&&digitalRead(sw_3)==LOW)
+{//if4      //JUEGO 10-1,9-2,8-3,7-4,6-5   
+   for( ;cont<=12;cont++){//for4 //tercera condicion
+   digitalWrite(leds4[cont],HIGH);delay(100);digitalWrite(leds4[cont],LOW); delay(100);}//for4
+   cont=0;}//if4
+   else{//else4
+   if(digitalRead(sw_2)==HIGH&&digitalRead(sw_1)==HIGH&&digitalRead(sw_3)==HIGH)
+{//if5      //JUEGO PERSONAL
+  for( ;ct>1;ct++)
+  {//for5 //quinta condicion
+  for( ;cont<6;cont++){//for5 //quinta condicion
+  digitalWrite(leds5[cont],HIGH);delay(100);digitalWrite(leds5_1[cont],HIGH);delay(100);digitalWrite(leds5[cont],LOW);delay(100);digitalWrite(leds5_1[cont],LOW);delay(100);}//for5
+  }cont=0;ct=0;}//if5   
+}}}}}//else4}//else3}//else2}//else1}//else0 
+}//programa
