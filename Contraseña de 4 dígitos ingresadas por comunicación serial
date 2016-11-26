@@ -1,0 +1,31 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12,11,5,4,3,2);
+String dato;
+int tam;
+void setup() {
+Serial.begin(9600);
+lcd.begin(16,2);  
+}
+void loop() {
+//EJERCICIO CONTRASEÑA= 1993
+if(Serial.available()>0){
+dato=Serial.readString();
+Serial.print(dato);
+tam=dato.length();
+if(tam<5){
+if(dato=="1993")
+{lcd.setCursor(0,0);
+lcd.print("CORRECT KEY");
+delay(100);
+}else
+{lcd.setCursor(0,0);
+ lcd.print("INCORRECT KEY");
+ delay(100); 
+}}else
+{Serial.print('\r');
+ Serial.print("EXCEEDS THE CAPACITY");
+ Serial.print('\r');
+ delay(100);
+ lcd.print("TRY AGAIN");
+}}
+}
