@@ -1,0 +1,64 @@
+#include "datos.h"
+
+int i;
+int j;
+int fsuma=0;
+int csuma=0;
+float sctotal=0;
+float cprom=0;
+long int cmult=1;
+String suma;
+String mult;
+String prom;
+char resultado;
+
+void setup() {
+Serial.begin(9600);
+}
+
+void SUMA(){  
+      for(j=0;j<20;j++){
+      for(i=0;i<3;i++){
+        fsuma=fsuma+matriz[j][i];}
+        suma=String("Suma de Fila "+String(j+1)+"="+String(fsuma));
+        Serial.println(suma);
+        fsuma=0;}
+        Serial.println(" ");
+    }
+
+void MULTIPLICACION(){     
+    for(j=0;j<3;j++){
+      for(i=0;i<20;i++){
+       cmult=cmult*matriz[i][j];}
+       mult=String("Multiplicacion de Columna "+String(j+1)+"="+String(cmult));
+       Serial.println(mult);
+       cmult=1;}
+       Serial.println(" ");
+}
+void PROMEDIO(){
+  for(j=0;j<3;j++){
+      for(i=0;i<20;i++){
+        csuma=csuma+matriz[i][j];}
+        sctotal=sctotal+csuma;
+        csuma=0;}
+        cprom=(sctotal/3);
+        prom=String("Promedio de Suma de Columnas = "+String(cprom));
+       Serial.println(prom);
+  }
+
+void loop() {
+    resultado = Serial.read();    
+    switch (resultado) 
+    {
+        case 'A': 
+        SUMA();
+        break;   
+        case 'B':    
+        MULTIPLICACION();
+        break;        
+        case 'C':
+        PROMEDIO();
+        break;
+      }
+    }
+   
